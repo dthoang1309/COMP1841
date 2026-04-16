@@ -21,7 +21,7 @@ form[action="edituser.php"] button,
 form[action="editreview.php"] button:hover, 
 form[action="editfilm.php"] button:hover,
 form[action="edituser.php"] button:hover {
-    background-color: #e0a800 !important; /* Vàng đậm hơn */
+    background-color: #e0a800 !important; /* Darker yellow */
     box-shadow: 0 2px 5px rgba(255, 193, 7, 0.4);
     transform: translateY(-1px);
 }
@@ -83,7 +83,7 @@ a[href="adduser.php"]:hover {
 .user-table th:nth-child(2) { width: 25%; } /* Username / Review Text */
 .user-table th:nth-child(3) { width: 30%; } /* Email / Film Title */
 .user-table th:nth-child(4) { width: 20%; } /* Actions / User */
-.user-table th:nth-child(5) { width: 20%; } /* Chỉ dành cho bảng Review */
+.user-table th:nth-child(5) { width: 20%; } /* Only for Review table */
 
 .user-table th, .user-table td {
     padding: 12px;
@@ -97,10 +97,10 @@ a[href="adduser.php"]:hover {
     display: flex;
     justify-content: center; /* Center the action buttons */
     gap: 8px; /* Spacing between Edit and Delete buttons */
-    border-bottom: none; /* Tránh đè viền khi dùng flex */
+    border-bottom: none; /* Prevent border overlap when using flex */
 }
 
-/* Đồng bộ kích thước nút bấm */
+/* Sync button sizes */
 .user-table button, 
 .user-table input[type="submit"] {
     min-width: 70px;
@@ -158,8 +158,8 @@ a[href="adduser.php"]:hover {
 /* Save/Add button and yellow styling for Edit */
 .btn-submit {
     width: 100%;
-    background-color: #ffc107; /* Màu vàng cho hành động Edit */
-    color: #212529; /* Chữ đen để dễ đọc trên nền vàng */
+    background-color: #ffc107; /* Yellow for Edit action */
+    color: #212529; /* Black text for readability on yellow */
     padding: 14px;
     border: none;
     border-radius: 6px;
