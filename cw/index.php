@@ -2,7 +2,7 @@
 include 'includes/DatabaseConnection.php';
 session_start();
 
-// 1. Kiểm tra đăng nhập
+// 1. Check login status
 if (!isset($_SESSION['user'])) {
     header('location: /COMP1841/cw/admin/login.php');
     exit();
@@ -30,7 +30,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
     $isAdmin = true;
 }
 
-// 2. Lấy ID của người dùng đang đăng nhập
+// 2. Get the current logged-in user ID
 $currentUserId = null;
 if (isset($_SESSION['user_id'])) {
     $currentUserId = $_SESSION['user_id'];

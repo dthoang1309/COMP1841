@@ -11,7 +11,7 @@ if (isset($_POST['username'])) {
     $stmt->execute(['username' => $_POST['username']]);
     $user = $stmt->fetch();
 
-    // Sử dụng password_verify để kiểm tra mật khẩu
+    // Use password_verify to validate the password
     if ($user && password_verify($_POST['password'], $user['password'])) {
         $_SESSION['user'] = $user['username'];
         $_SESSION['role'] = $user['role'];

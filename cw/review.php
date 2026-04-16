@@ -7,7 +7,7 @@ if (!isset($_SESSION['user'])) {
 }
 include 'includes/DatabaseConnection.php';
 
-// 1. LẤY THÔNG TIN QUYỀN VÀ ID NGƯỜI DÙNG HIỆN TẠI
+// 1. Get current user role and user ID
 $isAdmin = false;
 if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
     $isAdmin = true;
@@ -18,11 +18,11 @@ if (isset($_SESSION['user_id'])) {
     $currentUserId = $_SESSION['user_id'];
 }
 
-// 2. THÊM CỘT `review.userid` VÀO CÂU SELECT
+// 2. Add the `review.userid` column to the SELECT query
 $sql = "SELECT review.id,
                review.reviewtext,
                review.reviewdate,
-               review.userid, /* THÊM CỘT NÀY ĐỂ CHECK QUYỀN */
+               review.userid, /* Add this column to check permissions */
                film.title,
                user.username
         FROM review

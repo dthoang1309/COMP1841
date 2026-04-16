@@ -1,19 +1,19 @@
 <?php
 include 'includes/DatabaseConnection.php';
-// Bao gồm file chứa hàm query() nếu bạn có sử dụng hàm tự định nghĩa
+// Include file containing query() helper if you use a custom helper
 include 'includes/DatabaseFunctions.php'; 
 
 session_start();
 
-// Kiểm tra quyền truy cập (nếu cần)
+// Check access permissions (if needed)
 if (!isset($_SESSION['user'])) {
     header('location: /COMP1841/cw/admin/login.php');
     exit();
 }
 
-// 👉 XỬ LÝ THÊM REVIEW (ADD)
+// 👉 Handle adding a review (ADD)
 if (isset($_POST['reviewtext'])) {
-    // Sử dụng hàm query tự định nghĩa hoặc PDO trực tiếp
+    // Use a custom query helper or PDO directly
     $sql = 'INSERT INTO review (reviewtext, reviewdate, userid, filmid) 
             VALUES (:reviewtext, CURDATE(), :userid, :filmid)';
     
@@ -24,15 +24,15 @@ if (isset($_POST['reviewtext'])) {
         'filmid' => $_POST['filmid']
     ]);
 
-    // CHUYỂN HƯỚNG VỀ TRANG REVIEW NGAY LẬP TỨC
+    // Redirect immediately back to the review page
     header('location: review.php');
     exit();
 }
 
-// 👉 XỬ LÝ XÓA REVIEW
+// 👉 Handle review deletion
 if (isset($_POST['delete']) && isset($_POST['id'])) {
     
-    // 1. Lấy thông tin review để kiểm tra ai là người viết
+    // 1. Fetch the review info to check who wrote it
     $stmt = $pdo->prepare('SELECT userid FROM review WHERE id = :id');
     $stmt->execute(['id' => $_POST['id']]);
     $reviewToDelete = $stmt->fetch();
@@ -40,7 +40,7 @@ if (isset($_POST['delete']) && isset($_POST['id'])) {
     $isAdmin = (isset($_SESSION['role']) && $_SESSION['role'] === 'admin');
     $currentUserId = $_SESSION['user_id'] ?? null;
 
-    // 2. Chỉ thực hiện xóa nếu tìm thấy review VÀ (là admin HOẶC là chính chủ)
+    // 2. Only delete if review is found AND (is admin OR owner)
     if ($reviewToDelete && ($isAdmin || ($currentUserId == $reviewToDelete['userid']))) {
         $sql = "DELETE FROM review WHERE id = :id";
         $stmt = $pdo->prepare($sql);
@@ -51,13 +51,13 @@ if (isset($_POST['delete']) && isset($_POST['id'])) {
     exit();
 }
 
-// 👉 CHUẨN BỊ DỮ LIỆU CHO DROPDOWN TRONG FORM
+// 👉 Prepare data for dropdowns in the form
 $users = $pdo->query('SELECT * FROM user')->fetchAll();
 $films = $pdo->query('SELECT * FROM film')->fetchAll();
 
 $title = 'Add Review';
 
-// 👉 HIỂN THỊ GIAO DIỆN
+// 👉 Render the view
 ob_start();
 include 'templates/addreview.html.php';
 $output = ob_get_clean();

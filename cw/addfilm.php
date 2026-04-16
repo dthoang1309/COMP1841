@@ -5,19 +5,19 @@ include 'includes/DatabaseFunctions.php';
 
 session_start();
 
-// Nếu không phải là admin, đá về trang chủ hoặc báo lỗi
+// If not admin, redirect to homepage or show error
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    header('Location: index.php'); // Hoặc die("You do not have permission.");
+    header('Location: index.php'); // Or die("You do not have permission.");
     exit();
 } 
-// Đảm bảo session đã bắt đầu để lấy $_SESSION['user_id']
+// Ensure the session has started to access $_SESSION['user_id']
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Kiểm tra xem người dùng đã đăng nhập chưa (cần user_id)
+// Check whether the user is logged in (user_id is required)
 if (!isset($_SESSION['user_id'])) {
-    // Nếu chưa, chuyển hướng về trang đăng nhập
+    // If not logged in, redirect to the login page
     header('location: login.php');
     exit();
 }
@@ -37,11 +37,11 @@ if (isset($_POST['title'])) {
         );
     }
 
-    // CẬP NHẬT: Thêm user_id vào câu lệnh INSERT
+    // UPDATE: add user_id to the INSERT statement
     query($pdo, 'INSERT INTO film SET title = :title, image = :image, user_id = :user_id', [
         'title' => $_POST['title'],
         'image' => $imageName,
-        'user_id' => $_SESSION['user_id'] // Lấy ID người dùng từ Session
+        'user_id' => $_SESSION['user_id'] // Get user ID from Session
     ]);
 
     header('location: film.php');

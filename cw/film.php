@@ -2,12 +2,12 @@
 include 'includes/DatabaseConnection.php';
 include 'includes/DatabaseFunctions.php';
 
-// 1. Khởi tạo session
+// 1. Initialize session
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// 2. Lấy thông tin phân quyền cho View (Giao diện)
+// 2. Get authorization info for the view
 $isAdmin = false; 
 if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
     $isAdmin = true;
@@ -18,22 +18,22 @@ if (isset($_SESSION['user_id'])) {
     $currentUserId = $_SESSION['user_id'];
 }
 
-// 3. 🔥 XỬ LÝ XÓA PHIM (Có kiểm tra quyền)
+// 3. Handle film deletion (with permission check)
 if (isset($_POST['delete']) && !empty($_POST['id'])) {
 
-    // Lấy thông tin bộ phim đang muốn xóa ra trước
+    // Fetch the film data before deleting
     $filmToDelete = query($pdo, 'SELECT * FROM film WHERE id = :id', ['id' => $_POST['id']])->fetch();
 
     if ($filmToDelete) {
-        // Kiểm tra quyền: Chỉ cho phép xóa nếu là Admin HOẶC là người đã đăng bộ phim đó
+        // Check permissions: allow delete only if admin OR film owner
         if ($isAdmin || ($currentUserId !== null && $filmToDelete['user_id'] == $currentUserId)) {
             
-            // Xóa phim
+            // Delete film
             query($pdo, 'DELETE FROM film WHERE id = :id', [
                 'id' => $_POST['id']
             ]);
             
-            // (Tùy chọn) Bạn có thể thêm code xóa file ảnh trong thư mục images/ tại đây nếu muốn
+            // (Optional) You can add code here to delete the image file from the images/ folder if needed
         }
     }
 
@@ -41,13 +41,13 @@ if (isset($_POST['delete']) && !empty($_POST['id'])) {
     exit();
 }
 
-// 4. 🔥 LOAD DATA
-// Cột user_id sẽ tự động được lấy ra cùng các thông tin khác
+// 4.  Load data
+// The user_id column will automatically be loaded along with other fields
 $films = query($pdo, 'SELECT * FROM film')->fetchAll();
 
 $title = 'Film List';
 
-// 5. GỌI GIAO DIỆN
+// 5. Render the view
 ob_start();
 include 'templates/films.html.php';
 $output = ob_get_clean();

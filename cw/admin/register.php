@@ -6,7 +6,7 @@ if (isset($_POST['username'])) {
     $username = $_POST['username'];
     $email = $_POST['email'];
     
-    // Sử dụng password_hash để mã hóa mật khẩu
+    // Use password_hash to encrypt the password
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
     $check = $pdo->prepare("SELECT * FROM user WHERE username = :username");
@@ -15,7 +15,7 @@ if (isset($_POST['username'])) {
     if ($check->rowCount() > 0) {
         $error = "Username already exists";
     } else {
-        // Lưu mật khẩu đã mã hóa vào database
+        // Save the hashed password to the database
         $sql = "INSERT INTO user (username, email, password, role)
                 VALUES (:username, :email, :password, 'user')";
 

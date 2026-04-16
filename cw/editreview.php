@@ -4,7 +4,7 @@ include 'includes/DatabaseFunctions.php';
 
 session_start();
 
-// 1. Kiểm tra đăng nhập
+// 1. Check login status
 if (!isset($_SESSION['user'])) {
     header('location: /COMP1841/cw/admin/login.php');
     exit();
@@ -13,11 +13,11 @@ if (!isset($_SESSION['user'])) {
 $isAdmin = (isset($_SESSION['role']) && $_SESSION['role'] === 'admin');
 $currentUserId = $_SESSION['user_id'] ?? null;
 
-// 2. XỬ LÝ CẬP NHẬT (Khi người dùng nhấn Save Update)
+// 2. Handle update (when user clicks Save Update)
 if (isset($_POST['reviewtext'])) {
     $reviewId = $_POST['id'];
     
-    // Kiểm tra quyền một lần nữa trước khi UPDATE (Bảo mật backend)
+    // Re-check permissions before UPDATE (backend security)
     $stmt = $pdo->prepare('SELECT userid FROM review WHERE id = :id');
     $stmt->execute(['id' => $reviewId]);
     $review = $stmt->fetch();
@@ -33,13 +33,13 @@ if (isset($_POST['reviewtext'])) {
     exit();
 }
 
-// 3. LẤY DỮ LIỆU ĐỂ HIỂN THỊ FORM (GET)
+// 3. Retrieve data to display the form (GET)
 if (isset($_GET['id'])) {
     $stmt = $pdo->prepare('SELECT * FROM review WHERE id = :id');
     $stmt->execute(['id' => $_GET['id']]);
     $review = $stmt->fetch();
 
-    // Kiểm tra: Nếu không tìm thấy review hoặc không có quyền thì đá ra ngoài
+    // Check: if review not found or no permission, redirect out
     if (!$review || !($isAdmin || $currentUserId == $review['userid'])) {
         header('location: review.php');
         exit();
@@ -51,7 +51,7 @@ if (isset($_GET['id'])) {
 
 $title = 'Edit Review';
 
-// 4. HIỂN THỊ GIAO DIỆN
+// 4. Render the view
 ob_start();
 include 'templates/editreview.html.php';
 $output = ob_get_clean();

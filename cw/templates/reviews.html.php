@@ -22,7 +22,7 @@
     
     <td>
         <?php 
-        // Kiểm tra quyền: Là Admin HOẶC là người viết review này
+        // Check permissions: admin OR the author of this review
         $canEditDelete = false;
         if ($isAdmin || ($currentUserId !== null && $currentUserId == $review['userid'])) {
             $canEditDelete = true;

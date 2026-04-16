@@ -1,4 +1,4 @@
-/* --- BIẾN CHUNG (VARIABLES) --- */
+/* --- GLOBAL VARIABLES --- */
 :root {
     --primary-color: #007bff;
     --primary-hover: #0056b3;
@@ -13,12 +13,12 @@
     --transition: all 0.3s ease;
 }
 
-/* --- RESET CƠ BẢN --- */
+/* --- BASIC RESET --- */
 * {
     box-sizing: border-box;
 }
 
-/* --- TRANG DANH SÁCH REVIEW (reviews.html.php) --- */
+/* --- REVIEW LIST PAGE (reviews.html.php) --- */
 .review-container {
     max-width: 1000px;
     margin: 30px auto;
@@ -66,7 +66,7 @@
 }
 
 
-/* Nút Add Film/Add Review màu xanh lá */
+/* Add Film/Add Review button in green */
 a[href*="add"], .add-film-btn {
     display: inline-block;
     background-color: var(--success-color);
@@ -85,7 +85,7 @@ a[href*="add"]:hover {
     transform: translateY(-2px);
 }
 
-/* --- FORM THÊM/SỬA HIỆN ĐẠI --- */
+/* --- MODERN ADD/EDIT FORM --- */
 .form-container, .form-review {
     max-width: 550px;
     margin: 50px auto;

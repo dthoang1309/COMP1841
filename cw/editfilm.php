@@ -3,9 +3,9 @@ include 'includes/DatabaseConnection.php';
 include 'includes/DatabaseFunctions.php';
 session_start();
 
-// Nếu không phải là admin, đá về trang chủ hoặc báo lỗi
+// If not admin, redirect to homepage or show error
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    header('Location: index.php'); // Hoặc die("You do not have permission.");
+    header('Location: index.php'); // Or die("You do not have permission.");
     exit();
 } 
 // UPDATE
@@ -13,7 +13,7 @@ if (isset($_POST['title'])) {
 
     $imageName = $_POST['currentImage'];
 
-    // nếu có upload ảnh mới
+    // if a new image is uploaded
     if (!empty($_FILES['image']['name'])) {
 
         $imageName = time() . '_' . $_FILES['image']['name'];
@@ -34,7 +34,7 @@ if (isset($_POST['title'])) {
     exit();
 }
 
-// GET DATA
+// Get film data
 $film = query($pdo, 'SELECT * FROM film WHERE id = :id', [
     'id' => $_GET['id']
 ])->fetch();

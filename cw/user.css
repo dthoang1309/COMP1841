@@ -1,13 +1,13 @@
-/* --- CẬP NHẬT CSS CHO CÁC NÚT HÀNH ĐỘNG --- */
+/* --- UPDATE CSS FOR ACTION BUTTONS --- */
 
-/* 1. Cấu hình chung cho nút Edit (Màu vàng) */
+/* 1. General styling for Edit button (Yellow) */
 form[action="editreview.php"] button, 
 form[action="editfilm.php"] button,
 form[action="edituser.php"] button,
 .user-table form[action="edituser.php"] button,
 .btn-edit {
-    background-color: #ffc107 !important; /* Màu vàng chuẩn */
-    color: #212529 !important; /* Chữ màu đen/xám đậm để nổi bật trên nền vàng */
+    background-color: #ffc107 !important; /* Standard yellow */
+    color: #212529 !important; /* Dark text for contrast on yellow */
     border: none;
     padding: 8px 16px;
     border-radius: 4px;
@@ -17,7 +17,7 @@ form[action="edituser.php"] button,
     min-width: 70px;
 }
 
-/* Hiệu ứng khi di chuột vào nút Edit */
+/* Hover effect for Edit button */
 form[action="editreview.php"] button:hover, 
 form[action="editfilm.php"] button:hover,
 form[action="edituser.php"] button:hover {
@@ -26,7 +26,7 @@ form[action="edituser.php"] button:hover {
     transform: translateY(-1px);
 }
 
-/* 2. Cấu hình cho nút Delete (Màu đỏ) */
+/* 2. Styling for Delete button (Red) */
 input[type="submit"][value="Delete"], 
 button[name="delete"],
 .user-table button[name="delete"] {
@@ -46,7 +46,7 @@ button[name="delete"]:hover {
     background-color: #c82333 !important;
 }
 
-/* 3. Nút Add (Màu xanh lá) */
+/* 3. Add button (Green) */
 a[href="addreview.php"], 
 a[href="addfilm.php"], 
 a[href="adduser.php"],
@@ -67,18 +67,18 @@ a[href="adduser.php"]:hover {
     transform: translateY(-2px);
 }
 
-/* --- ĐỊNH DẠNG BẢNG NGƯỜI DÙNG --- */
-/* --- SỬA LỖI LỆCH CỘT BẢNG --- */
+/* --- USER TABLE STYLING --- */
+/* --- FIX TABLE COLUMN ALIGNMENT --- */
 
 .user-table {
     width: 95%;
     margin: 20px auto;
     border-collapse: collapse;
-    table-layout: fixed; /* QUAN TRỌNG: Giúp các cột có độ rộng cố định */
-    word-wrap: break-word; /* Xuống dòng nếu chữ quá dài */
+    table-layout: fixed; /* IMPORTANT: Helps columns keep fixed width */
+    word-wrap: break-word; /* Wrap text if it is too long */
 }
 
-/* Căn chỉnh độ rộng từng cột (Tùy chỉnh % cho phù hợp) */
+/* Set widths for each column (Adjust % as needed) */
 .user-table th:nth-child(1) { width: 5%; }  /* ID */
 .user-table th:nth-child(2) { width: 25%; } /* Username / Review Text */
 .user-table th:nth-child(3) { width: 30%; } /* Email / Film Title */
@@ -87,16 +87,16 @@ a[href="adduser.php"]:hover {
 
 .user-table th, .user-table td {
     padding: 12px;
-    text-align: center; /* Căn giữa toàn bộ chữ trong ô */
+    text-align: center; /* Center text in all cells */
     vertical-align: middle;
     border-bottom: 1px solid #eee;
 }
 
-/* Đảm bảo cột Actions chứa các nút không bị nhảy dòng */
+/* Ensure Actions column buttons don't wrap */
 .user-table td:last-child {
     display: flex;
-    justify-content: center; /* Căn giữa các nút bấm */
-    gap: 8px; /* Khoảng cách giữa nút Edit và Delete */
+    justify-content: center; /* Center the action buttons */
+    gap: 8px; /* Spacing between Edit and Delete buttons */
     border-bottom: none; /* Tránh đè viền khi dùng flex */
 }
 
@@ -104,12 +104,12 @@ a[href="adduser.php"]:hover {
 .user-table button, 
 .user-table input[type="submit"] {
     min-width: 70px;
-    margin: 0 !important; /* Xóa margin thừa gây lệch */
+    margin: 0 !important; /* Remove extra margin that causes alignment issues */
 }
 
-/* --- CSS CHO CÁC TRANG USER (ADD & EDIT) --- */
+/* --- CSS FOR USER PAGES (ADD & EDIT) --- */
 
-/* Khung bao ngoài giúp form căn giữa và có đổ bóng */
+/* Outer wrapper keeps the form centered with shadow */
 .form-container {
     max-width: 500px;
     margin: 50px auto;
@@ -126,7 +126,7 @@ a[href="adduser.php"]:hover {
     font-size: 1.6rem;
 }
 
-/* Định dạng từng cụm nhập liệu */
+/* Format each input group */
 .form-group {
     margin-bottom: 20px;
     display: flex;
@@ -155,7 +155,7 @@ a[href="adduser.php"]:hover {
     outline: none;
 }
 
-/* Nút Save/Add to và màu vàng cho Edit */
+/* Save/Add button and yellow styling for Edit */
 .btn-submit {
     width: 100%;
     background-color: #ffc107; /* Màu vàng cho hành động Edit */
@@ -173,7 +173,7 @@ a[href="adduser.php"]:hover {
     background-color: #e0a800;
 }
 
-/* Nếu là nút Add User thì dùng màu xanh lá */
+/* Use green for Add User button */
 .btn-add-user {
     background-color: #28a745;
     color: white;

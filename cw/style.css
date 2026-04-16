@@ -1,24 +1,24 @@
-/* Sửa lại body để sử dụng Flexbox */
+/* Adjust body to use Flexbox */
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
     margin: 0;
     background: #f0f2f5;
     color: #050505;
     
-    /* Thêm 3 dòng này */
+    /* Add these 3 lines */
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Ép body luôn cao bằng ít nhất màn hình */
+    min-height: 100vh; /* Force body to be at least full screen height */
 }
 
-/* Ép phần nội dung chính giãn ra để đẩy footer xuống */
+/* Allow main content to expand so footer stays at bottom */
 main, .content-wrapper { 
     flex: 1; 
 }
 
 /* ===== HEADER ===== */
 h1 {
-    background: #1877f2; /* 🔥 xanh Facebook */
+    background: #1877f2; /* 🔥 Facebook blue */
     color: white;
     padding: 16px 40px;
     margin: 0;
@@ -74,7 +74,7 @@ h2 {
 /* ===== BUTTON ===== */
 button,
 input[type="submit"] {
-    background: #4f8cff; /* 🔥 đổi từ đỏ → xanh */
+    background: #4f8cff; /* 🔥 changed from red to blue */
     color: white;
     border: none;
     padding: 8px 14px;
@@ -90,7 +90,7 @@ button:hover {
     box-shadow: 0 4px 10px rgba(0,0,0,0.4);
 }
 
-/* 🔥 DELETE riêng giữ màu đỏ */
+/* 🔥 Keep delete button red */
 button[name="delete"] {
     background: #e74c3c;
 }
@@ -113,7 +113,7 @@ button[name="delete"]:hover {
     flex-direction: column;
     gap: 14px;
 
-    background: #ffffff; /* 🔥 trắng sạch */
+    background: #ffffff; /* 🔥 clean white */
     padding: 30px;
     border-radius: 12px;
     width: 340px;
@@ -137,7 +137,7 @@ button[name="delete"]:hover {
     background: #f0f2f5;
     color: #050505;
 
-    box-sizing: border-box; /* 🔥 QUAN TRỌNG */
+    box-sizing: border-box; /* 🔥 IMPORTANT */
 }
 
 /* focus effect */
