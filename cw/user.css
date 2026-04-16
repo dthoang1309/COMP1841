@@ -1,0 +1,184 @@
+/* --- CẬP NHẬT CSS CHO CÁC NÚT HÀNH ĐỘNG --- */
+
+/* 1. Cấu hình chung cho nút Edit (Màu vàng) */
+form[action="editreview.php"] button, 
+form[action="editfilm.php"] button,
+form[action="edituser.php"] button,
+.user-table form[action="edituser.php"] button,
+.btn-edit {
+    background-color: #ffc107 !important; /* Màu vàng chuẩn */
+    color: #212529 !important; /* Chữ màu đen/xám đậm để nổi bật trên nền vàng */
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    min-width: 70px;
+}
+
+/* Hiệu ứng khi di chuột vào nút Edit */
+form[action="editreview.php"] button:hover, 
+form[action="editfilm.php"] button:hover,
+form[action="edituser.php"] button:hover {
+    background-color: #e0a800 !important; /* Vàng đậm hơn */
+    box-shadow: 0 2px 5px rgba(255, 193, 7, 0.4);
+    transform: translateY(-1px);
+}
+
+/* 2. Cấu hình cho nút Delete (Màu đỏ) */
+input[type="submit"][value="Delete"], 
+button[name="delete"],
+.user-table button[name="delete"] {
+    background-color: #dc3545 !important;
+    color: white !important;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    min-width: 70px;
+}
+
+input[type="submit"][value="Delete"]:hover,
+button[name="delete"]:hover {
+    background-color: #c82333 !important;
+}
+
+/* 3. Nút Add (Màu xanh lá) */
+a[href="addreview.php"], 
+a[href="addfilm.php"], 
+a[href="adduser.php"],
+.add-film-btn {
+    display: inline-block;
+    background-color: #28a745 !important;
+    color: white !important;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+a[href="adduser.php"]:hover {
+    background-color: #218838 !important;
+    transform: translateY(-2px);
+}
+
+/* --- ĐỊNH DẠNG BẢNG NGƯỜI DÙNG --- */
+/* --- SỬA LỖI LỆCH CỘT BẢNG --- */
+
+.user-table {
+    width: 95%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    table-layout: fixed; /* QUAN TRỌNG: Giúp các cột có độ rộng cố định */
+    word-wrap: break-word; /* Xuống dòng nếu chữ quá dài */
+}
+
+/* Căn chỉnh độ rộng từng cột (Tùy chỉnh % cho phù hợp) */
+.user-table th:nth-child(1) { width: 5%; }  /* ID */
+.user-table th:nth-child(2) { width: 25%; } /* Username / Review Text */
+.user-table th:nth-child(3) { width: 30%; } /* Email / Film Title */
+.user-table th:nth-child(4) { width: 20%; } /* Actions / User */
+.user-table th:nth-child(5) { width: 20%; } /* Chỉ dành cho bảng Review */
+
+.user-table th, .user-table td {
+    padding: 12px;
+    text-align: center; /* Căn giữa toàn bộ chữ trong ô */
+    vertical-align: middle;
+    border-bottom: 1px solid #eee;
+}
+
+/* Đảm bảo cột Actions chứa các nút không bị nhảy dòng */
+.user-table td:last-child {
+    display: flex;
+    justify-content: center; /* Căn giữa các nút bấm */
+    gap: 8px; /* Khoảng cách giữa nút Edit và Delete */
+    border-bottom: none; /* Tránh đè viền khi dùng flex */
+}
+
+/* Đồng bộ kích thước nút bấm */
+.user-table button, 
+.user-table input[type="submit"] {
+    min-width: 70px;
+    margin: 0 !important; /* Xóa margin thừa gây lệch */
+}
+
+/* --- CSS CHO CÁC TRANG USER (ADD & EDIT) --- */
+
+/* Khung bao ngoài giúp form căn giữa và có đổ bóng */
+.form-container {
+    max-width: 500px;
+    margin: 50px auto;
+    background: #ffffff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 1.6rem;
+}
+
+/* Định dạng từng cụm nhập liệu */
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="email"] {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+    outline: none;
+}
+
+/* Nút Save/Add to và màu vàng cho Edit */
+.btn-submit {
+    width: 100%;
+    background-color: #ffc107; /* Màu vàng cho hành động Edit */
+    color: #212529; /* Chữ đen để dễ đọc trên nền vàng */
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #e0a800;
+}
+
+/* Nếu là nút Add User thì dùng màu xanh lá */
+.btn-add-user {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-add-user:hover {
+    background-color: #218838;
+}

@@ -1,0 +1,160 @@
+/* --- CSS CHO TRANG DANH SÁCH PHIM (films.html.php) --- */
+
+/* Container bao quanh danh sách phim */
+.film-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Tự động chia cột */
+    gap: 25px;
+    padding: 20px;
+}
+
+/* Định dạng từng thẻ phim (card) */
+.card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 15px;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Hiệu ứng nổi lên khi di chuột */
+}
+
+/* Ảnh phim */
+.card img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover; /* Giữ tỉ lệ ảnh không bị méo */
+}
+
+/* Tên phim */
+.card-content {
+    padding: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+}
+
+/* Khu vực nút bấm (Delete/Edit) */
+.card form {
+    display: inline-block;
+    width: 45%;
+    margin: 0 2%;
+    text-align: center;
+}
+
+.card button {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+
+/* Nút xóa */
+button[name="delete"] {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+/* Nút sửa */
+.card form[action="editfilm.php"] button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.card button:hover {
+    opacity: 0.8;
+}
+
+/* Nút thêm phim mới */
+.add-film-btn {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+/* --- CSS CHO TRANG CHỈNH SỬA (editfilm.html.php) --- */
+
+/* Container cho form edit */
+form[enctype="multipart/form-data"] {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 30px;
+    background: #fdfdfd;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+form[enctype="multipart/form-data"] input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+form[enctype="multipart/form-data"] input[type="file"] {
+    margin-top: 10px;
+    display: block;
+}
+
+/* Ảnh hiện tại trong trang edit */
+form[enctype="multipart/form-data"] img {
+    border-radius: 8px;
+    margin-top: 10px;
+    border: 2px solid #007bff;
+}
+
+/* Nút Save */
+form[enctype="multipart/form-data"] input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 20px;
+}
+
+form[enctype="multipart/form-data"] input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.btn-edit {
+    display: inline-block;
+    padding: 6px 12px; /* Chỉnh lại cho bằng với padding của nút Delete */
+    background-color: #0d6efd; /* Màu xanh dương giống bootstrap, hoặc đổi màu khác tùy ý */
+    color: white;
+    text-decoration: none; /* Bỏ gạch chân của link */
+    border-radius: 4px; /* Bo góc */
+    border: none;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn-edit:hover {
+    background-color: #0b5ed7; /* Đổi màu đậm hơn một chút khi di chuột vào */
+    color: white;
+}

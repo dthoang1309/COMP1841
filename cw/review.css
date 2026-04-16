@@ -1,0 +1,117 @@
+/* --- BIẾN CHUNG (VARIABLES) --- */
+:root {
+    --primary-color: #007bff;
+    --primary-hover: #0056b3;
+    --danger-color: #dc3545;
+    --danger-hover: #c82333;
+    --gray-color: #6c757d;
+    --gray-hover: #5a6268;
+    --success-color: #28a745;
+    --success-hover: #218838;
+    --bg-light: #f9f9f9;
+    --card-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    --transition: all 0.3s ease;
+}
+
+/* --- RESET CƠ BẢN --- */
+* {
+    box-sizing: border-box;
+}
+
+/* --- TRANG DANH SÁCH REVIEW (reviews.html.php) --- */
+.review-container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.review-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: var(--card-shadow);
+    border-left: 5px solid var(--primary-color);
+    transition: var(--transition);
+}
+
+.review-card:hover {
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.review-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.review-user { font-weight: bold; color: #333; }
+.review-film-title {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 0.9rem;
+    background: rgba(0, 123, 255, 0.1);
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+.review-content {
+    font-style: italic;
+    color: #555;
+    line-height: 1.6;
+    margin: 15px 0;
+}
+
+
+/* Nút Add Film/Add Review màu xanh lá */
+a[href*="add"], .add-film-btn {
+    display: inline-block;
+    background-color: var(--success-color);
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: var(--transition);
+    border: none;
+}
+
+a[href*="add"]:hover {
+    background-color: var(--success-hover);
+    transform: translateY(-2px);
+}
+
+/* --- FORM THÊM/SỬA HIỆN ĐẠI --- */
+.form-container, .form-review {
+    max-width: 550px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #444;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: var(--bg-light);
+    font-size: 1rem;
+    width: 100%;
+}
